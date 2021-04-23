@@ -1,4 +1,6 @@
-# demo-timer
+# Demo timer
+
+This is a simple PWA to run a Xebia branded timer during Innovation Day demos.
 
 ## Project setup
 ```
@@ -23,6 +25,12 @@ npm run test:unit
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Deploy
+
+```
+npm run deploy
 ```
 
 ### Customize configuration
