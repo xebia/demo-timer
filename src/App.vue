@@ -1,7 +1,15 @@
 <template>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
-      <EditTimer v-if="editing" @editing="editing = $event" />
+      <EditTimer
+        v-if="editing"
+        @editing="editing = $event"
+        @change="
+          initialSeconds = $event;
+          seconds = $event;
+        "
+        @error="showError($event)"
+      />
       <Time v-else :seconds="seconds" />
     </div>
     <footer>
@@ -22,33 +30,38 @@ export default defineComponent({
   name: "App",
   components: { EditTimer, Settings, Time },
   setup() {
-    const seconds = ref(10);
+    const initialSeconds = ref(INITIAL_SECONDS);
+    const seconds = ref(INITIAL_SECONDS);
     const editing = ref(false);
     const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
     let interval: number | undefined;
 
     const onKeyDown = (e: KeyboardEvent) => {
       // Start/stop/reset timer
-      switch (e.key) {
-        case " ":
-        case "Enter":
-          e.preventDefault();
-          if (interval) {
+      if (!editing.value) {
+        switch (e.key) {
+          case " ":
+          case "Enter":
+            e.preventDefault();
+            if (interval) {
+              pauseTimer();
+            } else {
+              startTimer();
+            }
+            break;
+          case "Escape":
+            e.preventDefault();
             pauseTimer();
-          } else {
-            startTimer();
-          }
-          break;
-        case "Escape":
-          e.preventDefault();
-          pauseTimer();
-          resetTimer();
-          break;
-        case "s":
-          editing.value = true;
-          break;
-        default:
-          break;
+            resetTimer();
+            break;
+          case "s":
+            if (!interval) {
+              editing.value = true;
+            }
+            break;
+          default:
+            break;
+        }
       }
     };
 
@@ -67,7 +80,7 @@ export default defineComponent({
     };
 
     const resetTimer = () => {
-      seconds.value = INITIAL_SECONDS;
+      seconds.value = initialSeconds.value;
     };
 
     onUnmounted(pauseTimer);
@@ -80,9 +93,10 @@ export default defineComponent({
     return {
       bgColor,
       editing,
-      initialSeconds: ref(INITIAL_SECONDS),
+      initialSeconds,
       onBgColorInput,
       seconds,
+      showError: (e: string) => console.log(e),
     };
   },
 });

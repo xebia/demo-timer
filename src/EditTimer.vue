@@ -30,9 +30,20 @@ export default defineComponent({
         case "Escape":
           emit("editing", false);
           break;
-        case "Enter":
+        case "Enter": {
           emit("editing", false);
+          const split = +timerSequence.value.length - 2;
+          const secs = +timerSequence.value.substring(split);
+          if (secs < 60) {
+            emit(
+              "change",
+              +timerSequence.value.substring(0, split) * 60 + secs
+            );
+          } else {
+            emit("error", "Seconds must be under 60");
+          }
           break;
+        }
         default:
           // Enter numbers (max 4)
           if (!isNaN(parseInt(e.key, 10))) {
