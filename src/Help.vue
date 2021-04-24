@@ -1,7 +1,14 @@
 <template>
   <div class="container">
-    <code>?</code>
-    <div v-show="showHelp">HELP</div>
+    <button @click="toggleHelp">?</button>
+    <div class="sidepanel" v-show="showHelp">
+      <h2>Keyboard shortcuts and settings</h2>
+      <ul>
+        <li><code>Space</code> Start / pause timer</li>
+        <li><code>Esc</code> Reset timer</li>
+        <li><code>?</code> Toggle help/settings</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -15,6 +22,7 @@ export default defineComponent({
 
     const keyDown = (e: KeyboardEvent) => {
       if (e.key === "?") {
+        e.preventDefault();
         toggleHelp();
       }
     };
@@ -23,28 +31,65 @@ export default defineComponent({
     onUnmounted(() => window.removeEventListener("keydown", keyDown));
 
     const showHelp = ref(false);
-    return { showHelp };
+    return { showHelp, toggleHelp };
   },
 });
 </script>
 
 <style scoped lang="scss">
 .container {
-  opacity: 0.2;
   text-align: right;
 }
-code {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+button {
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background: transparent;
+  opacity: 0.2;
+  &:hover {
+    background: #666;
+  }
+}
+.sidepanel {
   color: #2c3e50;
-  font-size: 1.5rem;
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  width: 300px;
+  background: #fff;
+  right: 1rem;
+  top: 1rem;
+  padding: 2rem;
+  text-align: left;
+}
+code {
+  color: #2c3e50;
+  font-weight: bold;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;
   border-radius: 4px;
   background: #f7f7f7;
-  width: 2.5rem;
-  height: 2.5rem;
+  padding: 0.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: right;
+  margin-right: 0.5rem;
+}
+h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+ul {
+  color: #9d92b2;
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+}
+li {
+  margin-bottom: 0.75rem;
 }
 </style>

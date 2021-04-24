@@ -30,6 +30,8 @@ export default defineComponent({
 
 <style scoped>
 .time-display {
+  font-family: DigitalDisplay, monospace;
+  font-weight: bold;
   height: 100%;
   line-height: 0;
   font-size: 35vw;

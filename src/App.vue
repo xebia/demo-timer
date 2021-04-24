@@ -26,6 +26,7 @@ export default defineComponent({
     const keyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case " ":
+          e.preventDefault();
           if (interval) {
             pauseTimer();
           } else {
@@ -33,6 +34,7 @@ export default defineComponent({
           }
           break;
         case "Escape":
+          e.preventDefault();
           pauseTimer();
           resetTimer();
           break;
@@ -69,22 +71,35 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-html,
-body {
-  height: 100%;
-  margin: 0;
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("assets/proximanova-regular-webfont.woff") format("woff"),
+    url("assets/proximanova-regular-webfont.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("assets/proximanova-bold-webfont.woff") format("woff"),
+    url("assets/proximanova-bold-webfont.ttf") format("truetype");
+  font-weight: bold;
+}
+
 @font-face {
   font-family: "DigitalDisplay";
   src: url("assets/DigitalDisplay.woff") format("woff"),
     url("assets/DigitalDisplay.ttf") format("truetype");
   font-weight: bold;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
   background: #6c1d5f;
   color: #ffffff;
-  font-family: DigitalDisplay, serif, monospace;
-  font-weight: bold;
+  font-family: "Proxima Nova", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
