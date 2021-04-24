@@ -6,10 +6,17 @@
       <ul>
         <li><code>Space</code> Start / pause timer</li>
         <li><code>Esc</code> Reset timer</li>
+        <li><code>S</code> Set timer length</li>
         <li><code>?</code> Toggle help/settings</li>
       </ul>
       <h2>Settings</h2>
-      <label> <input type="color" :value="bgColor" /> Background color </label>
+      <ul>
+        <li>
+          <label>
+            <input type="color" :value="bgColor" /> Background color
+          </label>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -20,7 +27,7 @@ import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 export default defineComponent({
   name: "Settings",
   props: { bgColor: { type: String, required: true } },
-  setup(props) {
+  setup() {
     const toggleHelp = () => (showHelp.value = !showHelp.value);
 
     const keyDown = (e: KeyboardEvent) => {
@@ -98,7 +105,7 @@ li {
 label {
   color: #9d92b2;
 }
-input {
+input[type="color"] {
   margin-right: 0.5rem;
 }
 </style>

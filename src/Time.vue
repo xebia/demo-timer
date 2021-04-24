@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container wrapper">
     <div class="time-display">{{ time }}</div>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 }
-.container {
+.wrapper {
   height: 100%;
 }
 </style>

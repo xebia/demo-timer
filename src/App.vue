@@ -1,7 +1,8 @@
 <template>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
-      <Time :seconds="seconds" />
+      <EditTimer v-if="editing" @editing="editing = $event" />
+      <Time v-else :seconds="seconds" />
     </div>
     <footer>
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
@@ -11,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import EditTimer from "./EditTimer.vue";
 import Settings from "./Settings.vue";
 import Time from "./Time.vue";
 
@@ -18,15 +20,18 @@ const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: "App",
-  components: { Settings, Time },
-  setup(props) {
+  components: { EditTimer, Settings, Time },
+  setup() {
     const seconds = ref(10);
+    const editing = ref(false);
     const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
     let interval: number | undefined;
 
-    const keyDown = (e: KeyboardEvent) => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      // Start/stop/reset timer
       switch (e.key) {
         case " ":
+        case "Enter":
           e.preventDefault();
           if (interval) {
             pauseTimer();
@@ -39,12 +44,16 @@ export default defineComponent({
           pauseTimer();
           resetTimer();
           break;
+        case "s":
+          editing.value = true;
+          break;
         default:
+          break;
       }
     };
 
-    onMounted(() => window.addEventListener("keydown", keyDown));
-    onUnmounted(() => window.removeEventListener("keydown", keyDown));
+    onMounted(() => window.addEventListener("keydown", onKeyDown));
+    onUnmounted(() => window.removeEventListener("keydown", onKeyDown));
 
     const startTimer = () => {
       interval = setInterval(() => {
@@ -70,6 +79,7 @@ export default defineComponent({
 
     return {
       bgColor,
+      editing,
       initialSeconds: ref(INITIAL_SECONDS),
       onBgColorInput,
       seconds,
