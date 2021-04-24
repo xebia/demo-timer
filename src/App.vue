@@ -4,7 +4,7 @@
       <Time :seconds="seconds" />
     </div>
     <footer>
-      <TimerControls />
+      <TimerControls @reset="seconds = initialSeconds" />
     </footer>
   </div>
 </template>
@@ -14,6 +14,8 @@ import { defineComponent, ref } from "vue";
 import Time from "./Time.vue";
 import TimerControls from "./TimerControls.vue";
 
+const INITIAL_SECONDS = 5 * 60;
+
 export default defineComponent({
   name: "App",
   components: {
@@ -21,7 +23,10 @@ export default defineComponent({
     TimerControls,
   },
   setup() {
-    return { seconds: ref(5 * 60) };
+    return {
+      initialSeconds: ref(INITIAL_SECONDS),
+      seconds: ref(INITIAL_SECONDS + 20),
+    };
   },
 });
 </script>

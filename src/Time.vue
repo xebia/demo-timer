@@ -28,6 +28,7 @@ export default defineComponent({
 <style scoped>
 .time-display {
   height: 100%;
+  line-height: 0;
   font-size: 30vw;
   display: flex;
   justify-content: center;

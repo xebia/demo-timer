@@ -10,12 +10,20 @@ import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 export default defineComponent({
   name: "TimerControls",
-  props: {
-    msg: String,
-  },
-  setup() {
+  setup(_, { emit }) {
     const toggleHelp = () => (showHelp.value = !showHelp.value);
-    const keyDown = (e: KeyboardEvent) => e.key == "?" && toggleHelp();
+    const keyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "?":
+          toggleHelp();
+          break;
+        case "Escape":
+          emit("reset");
+          break;
+        default:
+          console.log(e);
+      }
+    };
 
     onMounted(() => window.addEventListener("keydown", keyDown));
     onUnmounted(() => window.removeEventListener("keydown", keyDown));
