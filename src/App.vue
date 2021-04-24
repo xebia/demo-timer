@@ -4,7 +4,7 @@
       <Time :seconds="seconds" />
     </div>
     <footer>
-      <Settings :bgColor="bgColor" @input="bgColor = $event.target.value" />
+      <Settings :bgColor="bgColor" @input="onBgColorInput" />
     </footer>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default defineComponent({
   components: { Settings, Time },
   setup(props) {
     const seconds = ref(10);
-    const bgColor = ref("#6c1d5f");
+    const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
     let interval: number | undefined;
 
     const keyDown = (e: KeyboardEvent) => {
@@ -63,9 +63,15 @@ export default defineComponent({
 
     onUnmounted(pauseTimer);
 
+    const onBgColorInput = (e: MouseEvent) => {
+      bgColor.value = (e.target as HTMLInputElement).value;
+      localStorage.setItem("timer-bgColor", bgColor.value);
+    };
+
     return {
       bgColor,
       initialSeconds: ref(INITIAL_SECONDS),
+      onBgColorInput,
       seconds,
     };
   },

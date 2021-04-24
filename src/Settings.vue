@@ -21,7 +21,6 @@ export default defineComponent({
   name: "Settings",
   props: { bgColor: { type: String, required: true } },
   setup(props) {
-    console.log(props.bgColor);
     const toggleHelp = () => (showHelp.value = !showHelp.value);
 
     const keyDown = (e: KeyboardEvent) => {
