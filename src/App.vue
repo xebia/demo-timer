@@ -1,16 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    {{ time }}
+    <TimerControls />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { computed, defineComponent, ref } from "vue";
+import TimerControls from "./TimerControls.vue";
+
+const leftPad = (v: number): string =>
+  v.toString().length < 2 ? `0${v}` : v.toString();
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    TimerControls,
+  },
+  setup() {
+    const seconds = ref(5 * 60);
+    const time = computed(() => {
+      const s = seconds.value;
+      return `${Math.floor(s / 60)}:${leftPad(s % 60)}`;
+    });
+
+    return { time };
   },
 });
 </script>
