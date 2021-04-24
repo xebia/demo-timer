@@ -1,6 +1,6 @@
 <template>
-  <div>
-    {{ time }}
+  <div class="container">
+    <div class="time-display">{{ time }}</div>
   </div>
 </template>
 
@@ -25,4 +25,15 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.time-display {
+  height: 100%;
+  font-size: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  height: 100%;
+}
+</style>

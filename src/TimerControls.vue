@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <code>?</code>
     <div v-show="showHelp">HELP</div>
   </div>
@@ -27,8 +27,13 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.container {
+  opacity: 0.2;
+  text-align: right;
+}
 code {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  color: #2c3e50;
   font-size: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;

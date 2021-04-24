@@ -1,7 +1,11 @@
 <template>
-  <div class="container">
-    <Time :seconds="seconds" class="time" />
-    <TimerControls class="text" />
+  <div class="app-container">
+    <div class="content">
+      <Time :seconds="seconds" />
+    </div>
+    <footer>
+      <TimerControls />
+    </footer>
   </div>
 </template>
 
@@ -29,19 +33,29 @@ body {
   margin: 0;
 }
 #app {
+  background: #6c1d5f;
+  color: #ffffff;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   height: 100%;
 }
-.container {
+
+.app-container {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.time {
+.container {
+  padding: 0 1rem;
+}
+.content {
+  height: 100%;
   flex: 1;
+  padding: 1rem 0;
+}
+footer {
+  padding: 1rem 0;
 }
 </style>
