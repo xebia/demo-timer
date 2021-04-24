@@ -1,16 +1,43 @@
 <template>
-  <div>Help ?</div>
+  <div>
+    <code>?</code>
+    <div v-show="showHelp">HELP</div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 export default defineComponent({
   name: "TimerControls",
   props: {
     msg: String,
   },
+  setup() {
+    const toggleHelp = () => (showHelp.value = !showHelp.value);
+    const keyDown = (e: KeyboardEvent) => e.key == "?" && toggleHelp();
+
+    onMounted(() => window.addEventListener("keydown", keyDown));
+    onUnmounted(() => window.removeEventListener("keydown", keyDown));
+
+    const showHelp = ref(false);
+    return { showHelp };
+  },
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+code {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f7f7f7;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+}
+</style>

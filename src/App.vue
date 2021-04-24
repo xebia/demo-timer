@@ -1,41 +1,47 @@
 <template>
-  <div>
-    {{ time }}
-    <TimerControls />
+  <div class="container">
+    <Time :seconds="seconds" class="time" />
+    <TimerControls class="text" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
+import Time from "./Time.vue";
 import TimerControls from "./TimerControls.vue";
-
-const leftPad = (v: number): string =>
-  v.toString().length < 2 ? `0${v}` : v.toString();
 
 export default defineComponent({
   name: "App",
   components: {
+    Time,
     TimerControls,
   },
   setup() {
-    const seconds = ref(5 * 60);
-    const time = computed(() => {
-      const s = seconds.value;
-      return `${Math.floor(s / 60)}:${leftPad(s % 60)}`;
-    });
-
-    return { time };
+    return { seconds: ref(5 * 60) };
   },
 });
 </script>
 
 <style lang="scss">
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.time {
+  flex: 1;
 }
 </style>
