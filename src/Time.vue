@@ -9,6 +9,8 @@ import { computed, defineComponent } from "vue";
 
 const leftPad = (v: number): string =>
   v.toString().length < 2 ? `0${v}` : v.toString();
+const round = (v: number): string =>
+  `${v < 0 ? "-" : ""}${Math.floor(Math.abs(v))}`;
 
 export default defineComponent({
   name: "Time",
@@ -17,9 +19,10 @@ export default defineComponent({
   },
   setup(props) {
     return {
-      time: computed(
-        () => `${Math.floor(props.seconds / 60)}:${leftPad(props.seconds % 60)}`
-      ),
+      time: computed(() => {
+        const s = props.seconds;
+        return `${round(s / 60)}:${leftPad(Math.abs(s % 60))}`;
+      }),
     };
   },
 });

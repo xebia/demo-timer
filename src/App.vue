@@ -27,7 +27,7 @@ export default defineComponent({
     TimerControls,
   },
   setup() {
-    const seconds = ref(INITIAL_SECONDS);
+    const seconds = ref(10);
     let interval: number;
     const startTimer = () => {
       interval = setInterval(() => {
