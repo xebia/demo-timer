@@ -4,31 +4,45 @@
       <Time :seconds="seconds" />
     </div>
     <footer>
-      <TimerControls
-        @start="startTimer"
-        @pause="pauseTimer"
-        @reset="resetTimer"
-      />
+      <Help />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onUnmounted, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import Help from "./Help.vue";
 import Time from "./Time.vue";
-import TimerControls from "./TimerControls.vue";
 
 const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: "App",
-  components: {
-    Time,
-    TimerControls,
-  },
+  components: { Help, Time },
   setup() {
     const seconds = ref(10);
-    let interval: number;
+    let interval: number | undefined;
+
+    const keyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case " ":
+          if (interval) {
+            pauseTimer();
+          } else {
+            startTimer();
+          }
+          break;
+        case "Escape":
+          pauseTimer();
+          resetTimer();
+          break;
+        default:
+      }
+    };
+
+    onMounted(() => window.addEventListener("keydown", keyDown));
+    onUnmounted(() => window.removeEventListener("keydown", keyDown));
+
     const startTimer = () => {
       interval = setInterval(() => {
         seconds.value--;
@@ -37,10 +51,10 @@ export default defineComponent({
 
     const pauseTimer = () => {
       interval && clearInterval(interval);
+      interval = undefined;
     };
 
     const resetTimer = () => {
-      pauseTimer();
       seconds.value = INITIAL_SECONDS;
     };
 
@@ -49,9 +63,6 @@ export default defineComponent({
     return {
       initialSeconds: ref(INITIAL_SECONDS),
       seconds,
-      startTimer,
-      pauseTimer,
-      resetTimer,
     };
   },
 });

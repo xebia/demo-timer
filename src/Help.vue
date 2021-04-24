@@ -8,36 +8,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
-export enum TimerState {
-  Stopped,
-  Started,
-}
-
 export default defineComponent({
-  name: "TimerControls",
-  setup(_, { emit }) {
+  name: "Help",
+  setup() {
     const toggleHelp = () => (showHelp.value = !showHelp.value);
-    const timerState = ref<TimerState>(TimerState.Stopped);
 
     const keyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case "?":
-          toggleHelp();
-          break;
-        case " ":
-          if (timerState.value === TimerState.Stopped) {
-            timerState.value = TimerState.Started;
-            emit("start");
-          } else {
-            timerState.value = TimerState.Stopped;
-            emit("pause");
-          }
-          break;
-        case "Escape":
-          timerState.value = TimerState.Stopped;
-          emit("reset");
-          break;
-        default:
+      if (e.key === "?") {
+        toggleHelp();
       }
     };
 
