@@ -1,0 +1,83 @@
+[debug] [2021-04-24T04:37:55.022Z] ----------------------------------------------------------------------
+[debug] [2021-04-24T04:37:55.023Z] Command:       /home/fvanwijk/.nvm/versions/node/v14.15.4/bin/node /home/fvanwijk/.nvm/versions/node/v14.15.4/bin/firebase deploy
+[debug] [2021-04-24T04:37:55.023Z] CLI Version:   9.10.0
+[debug] [2021-04-24T04:37:55.024Z] Platform:      linux
+[debug] [2021-04-24T04:37:55.024Z] Node Version:  v14.15.4
+[debug] [2021-04-24T04:37:55.024Z] Time:          Sat Apr 24 2021 06:37:55 GMT+0200 (Central European Summer Time)
+[debug] [2021-04-24T04:37:55.024Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-24T04:37:55.029Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-24T04:37:55.030Z] > authorizing via signed-in user (fvanwijk@xebia.com)
+[debug] [2021-04-24T04:37:55.030Z] [iam] checking project demotimer for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-04-24T04:37:55.032Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/demotimer:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-04-24T04:37:55.687Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 12:56:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=582","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:55.689Z] > refreshing access token with scopes: []
+[debug] [2021-04-24T04:37:55.689Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-24T04:37:55.771Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Sat, 24 Apr 2021 12:56:45 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:55.782Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/demotimer [none]
+[debug] [2021-04-24T04:37:55.953Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/demotimer 200
+[debug] [2021-04-24T04:37:55.953Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/demotimer {"projectId":"demotimer","projectNumber":"778266368719","displayName":"Demo timer","name":"projects/demotimer","resources":{"hostingSite":"demotimer"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'demotimer'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-04-24T04:37:55.957Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-24T04:37:55.957Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-24T04:37:56.047Z] <<< HTTP RESPONSE 200 {"date":"Sat, 24 Apr 2021 12:56:45 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:56.065Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-04-24T04:37:57.267Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 12:56:46 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[demotimer]: beginning deploy... 
+[info] i  hosting[demotimer]: found 27 files in dist 
+[debug] [2021-04-24T04:37:57.276Z] > refreshing access token with scopes: []
+[debug] [2021-04-24T04:37:57.276Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-24T04:37:57.277Z] [hosting] hash cache [ZGlzdA] stored for 27 files
+[debug] [2021-04-24T04:37:57.277Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":27,"success":27,"errored":0,"retried":0,"total":27,"elapsed":2}
+[debug] [2021-04-24T04:37:57.357Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 24 Apr 2021 12:56:46 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:57.368Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions/a8620e735e1200c8:populateFiles [none]
+[debug] [2021-04-24T04:37:57.368Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions/a8620e735e1200c8:populateFiles {"files":{"/favicon.ico":"e0535b2041a7a1721cdec785c903980d41fdf0d810a4ea9726b6ffd1371bbc28","/index.html":"47fc50c339bcbbd292243ca71299d9cf48cc15c6db809a451603ebbda2bf2675","/manifest.json":"bea4456ba7a6ebb03b5364b942d16ca8ad442e01eeaeaefab69ccb298e7a1b48","/precache-manifest.871fa218886acffa3c60319c16e69b04.js":"f700b3a1ef06cca279d7d34308bc214496fd265923c4280e5ccc932c07d20884","/robots.txt":"f30c4a1c220bd92c487bf016c9b4f4e6959c4c54f82c64c54ee375b1f0189156","/service-worker.js":"aaba58bf60572ccd72f3cacc9fc9c421595ebc87b10a7308e341481313cf7f79","/css/app.fcb180dc.css":"1f0655e4524862cabeeb89369d327920083633a49c3546280447b54ec6a5fb46","/img/logo.82b9c7a5.png":"0270ac8f3017b82e76aae3ea35c880d47bfd6d11d35fc80a1a354a4f27d160bb","/img/icons/android-chrome-192x192.png":"7bf5d00aade14cdbd9266476979eb376b1a221fac21bbcd540a9947384851978","/img/icons/android-chrome-512x512.png":"b306de640c0dbb4ad7a7a6467455bbda02efdea7eae33a8e861876dc13c888e5","/img/icons/android-chrome-maskable-192x192.png":"bed0dbdcbdb194d10b8638ab481334420e2b360dc5115f7420fd2536ab26a235","/img/icons/android-chrome-maskable-512x512.png":"f09cf16d455f734bbcb348f33a2ddc8ecbce84dc5856f3abbbb490ce8719794a","/img/icons/apple-touch-icon-120x120.png":"d31f44d26594559cdf6c57f7f651d8e2ab1ac312e9b8b033b3339f60717dc351","/img/icons/apple-touch-icon-152x152.png":"56ee37cd4e4baa3ede37e90b9005e50747fb711603bad18cc642d1f983c06763","/img/icons/apple-touch-icon-180x180.png":"ccee97a725d3530f4a8111d58e0f61f94fadf4f6fb6468c4aef748c6bd649670","/img/icons/apple-touch-icon-60x60.png":"f47f70c16bc06df8c393c0e213a316dcfb9720677a8ee09b4b690b3d8170b0b1","/img/icons/apple-touch-icon-76x76.png":"081d64e417bfa5a36b47ae153551dff60f3806c1446a094e5d9ead01aa275f96","/img/icons/apple-touch-icon.png":"999885b8893de7fb4b1dccd21b07f0d9c6aa337b85ea501f6ec87b54cfe323d0","/img/icons/favicon-16x16.png":"61c3d70ea4950e5c5cde41ef352a8d38a309083b3a1bb0739d5a76fe4908963a","/img/icons/favicon-32x32.png":"0b88c724af5f8c9ac5edfcef209e8f8cab39a9e0048f6a6902f2aba55f45fda0","/img/icons/msapplication-icon-144x144.png":"97a4df445a8b6f4266282a93342cd85326166571466ef0203171cd32b44a2022","/img/icons/mstile-150x150.png":"4b854eb04911280c094681a76878dba4e8038aeaa70c8e2bb89267cb754109d8","/img/icons/safari-pinned-tab.svg":"307aa10d7325ef7adc16b69f2d959ceb700b25488dd9b8c8d7740cea5a88c689","/js/app.eda51d33.js":"6169b833beacfec417778ed98b4c8c646dea7ed9ee74c7e1dbdbda47a98e4d24","/js/app.eda51d33.js.map":"a562af205c6d339b831410acd31f5d09220ac35918cb0b0e4399f7d8096ec3a4","/js/chunk-vendors.fed0afe9.js":"fbf8f30f0822978ab861c45655f4f939303f9db3565983c723cf52704597cbc5","/js/chunk-vendors.fed0afe9.js.map":"b5aab703688b6780cda782525bcfdc3a41525d497cd14d4eba896202a7eaea29"}}
+[debug] [2021-04-24T04:37:58.293Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions/a8620e735e1200c8:populateFiles 200
+[debug] [2021-04-24T04:37:58.293Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions/a8620e735e1200c8:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/demotimer/versions/a8620e735e1200c8/files"}
+[debug] [2021-04-24T04:37:58.293Z] [hosting][populate queue][FINAL] {"max":1017,"min":1017,"avg":1017,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1017}
+[debug] [2021-04-24T04:37:58.293Z] [hosting] uploads queued: 0
+[debug] [2021-04-24T04:37:58.293Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1619239078293}
+[info] ✔  hosting[demotimer]: file upload complete 
+[debug] [2021-04-24T04:37:58.294Z] [hosting] deploy completed after 1026ms
+[debug] [2021-04-24T04:37:58.295Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "demotimer"
+    },
+    "site": "demotimer",
+    "version": "sites/demotimer/versions/a8620e735e1200c8"
+  }
+]
+[info] i  hosting[demotimer]: finalizing version... 
+[debug] [2021-04-24T04:37:58.295Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-24T04:37:58.295Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-24T04:37:58.371Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 24 Apr 2021 12:56:47 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:58.387Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/versions/a8620e735e1200c8?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2021-04-24T04:37:59.305Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Apr 2021 12:56:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-24T04:37:59.305Z] [hosting] finalized version for demotimer: {"name":"sites/demotimer/versions/a8620e735e1200c8","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-04-24T12:56:46.336700Z","createUser":{"email":"fvanwijk@xebia.com"},"finalizeTime":"2021-04-24T12:56:48.832172Z","finalizeUser":{"email":"fvanwijk@xebia.com"}}
+[info] ✔  hosting[demotimer]: version finalized 
+[info] i  hosting[demotimer]: releasing new version... 
+[debug] [2021-04-24T04:37:59.306Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/demotimer/releases?version_name=sites/demotimer/versions/a8620e735e1200c8  
+ {"message":null}

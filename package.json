@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "pre-deploy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "firebase deploy"
   },
   "dependencies": {
