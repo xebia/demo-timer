@@ -4,13 +4,17 @@
       <Time :seconds="seconds" />
     </div>
     <footer>
-      <TimerControls @reset="seconds = initialSeconds" />
+      <TimerControls
+        @start="startTimer"
+        @pause="pauseTimer"
+        @reset="resetTimer"
+      />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onUnmounted, ref } from "vue";
 import Time from "./Time.vue";
 import TimerControls from "./TimerControls.vue";
 
@@ -23,9 +27,31 @@ export default defineComponent({
     TimerControls,
   },
   setup() {
+    const seconds = ref(INITIAL_SECONDS);
+    let interval: number;
+    const startTimer = () => {
+      interval = setInterval(() => {
+        seconds.value--;
+      }, 1000);
+    };
+
+    const pauseTimer = () => {
+      interval && clearInterval(interval);
+    };
+
+    const resetTimer = () => {
+      pauseTimer();
+      seconds.value = INITIAL_SECONDS;
+    };
+
+    onUnmounted(pauseTimer);
+
     return {
       initialSeconds: ref(INITIAL_SECONDS),
-      seconds: ref(INITIAL_SECONDS + 20),
+      seconds,
+      startTimer,
+      pauseTimer,
+      resetTimer,
     };
   },
 });
