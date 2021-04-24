@@ -52,21 +52,21 @@ export default defineComponent({
 }
 button {
   cursor: pointer;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: bold;
   width: 2.5rem;
   height: 2.5rem;
-  border: 2px solid #fff;
+  border: 2px solid #ffffff;
   border-radius: 4px;
   background: transparent;
   opacity: 0.2;
   &:hover {
-    background: #666;
+    background: #5a5a5a;
   }
 }
 .sidepanel {
-  color: #2c3e50;
+  color: #222222;
   box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.15);
   position: absolute;
   width: 300px;
@@ -77,7 +77,7 @@ button {
   text-align: left;
 }
 code {
-  color: #2c3e50;
+  color: #222222;
   font-weight: bold;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;

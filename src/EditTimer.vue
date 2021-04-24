@@ -76,8 +76,8 @@ export default defineComponent({
   align-items: center;
 
   text-decoration: underline;
-  text-decoration-color: red;
-  text-decoration-thickness: 2rem;
+  text-decoration-color: #06a99c;
+  text-decoration-thickness: 1.5rem;
   text-decoration-style: dotted;
   text-underline-offset: 3rem;
 }
