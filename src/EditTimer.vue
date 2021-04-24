@@ -34,14 +34,15 @@ export default defineComponent({
           emit("editing", false);
           const split = +timerSequence.value.length - 2;
           const secs = +timerSequence.value.substring(split);
-          if (secs < 60) {
-            emit(
-              "change",
-              +timerSequence.value.substring(0, split) * 60 + secs
-            );
-          } else {
+          if (secs >= 60) {
             emit("error", "Seconds must be under 60");
+            return;
           }
+          if (!timerSequence.value.length) {
+            emit("error", "Please enter a value using numeric keys");
+            return;
+          }
+          emit("change", +timerSequence.value.substring(0, split) * 60 + secs);
           break;
         }
         default:
