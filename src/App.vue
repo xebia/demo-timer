@@ -1,26 +1,27 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
       <Time :seconds="seconds" />
     </div>
     <footer>
-      <Help />
+      <Settings :bgColor="bgColor" @input="bgColor = $event.target.value" />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
-import Help from "./Help.vue";
+import Settings from "./Settings.vue";
 import Time from "./Time.vue";
 
 const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: "App",
-  components: { Help, Time },
-  setup() {
+  components: { Settings, Time },
+  setup(props) {
     const seconds = ref(10);
+    const bgColor = ref("#6c1d5f");
     let interval: number | undefined;
 
     const keyDown = (e: KeyboardEvent) => {
@@ -63,6 +64,7 @@ export default defineComponent({
     onUnmounted(pauseTimer);
 
     return {
+      bgColor,
       initialSeconds: ref(INITIAL_SECONDS),
       seconds,
     };

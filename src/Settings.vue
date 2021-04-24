@@ -2,12 +2,14 @@
   <div class="container">
     <button @click="toggleHelp">?</button>
     <div class="sidepanel" v-show="showHelp">
-      <h2>Keyboard shortcuts and settings</h2>
+      <h2>Keyboard shortcuts</h2>
       <ul>
         <li><code>Space</code> Start / pause timer</li>
         <li><code>Esc</code> Reset timer</li>
         <li><code>?</code> Toggle help/settings</li>
       </ul>
+      <h2>Settings</h2>
+      <label> <input type="color" :value="bgColor" /> Background color </label>
     </div>
   </div>
 </template>
@@ -16,8 +18,10 @@
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 export default defineComponent({
-  name: "Help",
-  setup() {
+  name: "Settings",
+  props: { bgColor: { type: String, required: true } },
+  setup(props) {
+    console.log(props.bgColor);
     const toggleHelp = () => (showHelp.value = !showHelp.value);
 
     const keyDown = (e: KeyboardEvent) => {
@@ -79,17 +83,23 @@ code {
   justify-content: center;
   margin-right: 0.5rem;
 }
+
 h2 {
   margin-top: 0;
-  font-size: 1.25rem;
 }
 ul {
   color: #9d92b2;
   list-style: none;
-  margin-top: 0;
+  margin: 0 0 2rem;
   padding: 0;
 }
 li {
   margin-bottom: 0.75rem;
+}
+label {
+  color: #9d92b2;
+}
+input {
+  margin-right: 0.5rem;
 }
 </style>
