@@ -8,9 +8,10 @@
           initialSeconds = $event;
           seconds = $event;
         "
-        @error="showError($event)"
+        @error="onError($event)"
       />
       <Time v-else :seconds="seconds" />
+      <div v-if="error">{{ error }}</div>
     </div>
     <footer>
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
@@ -34,6 +35,7 @@ export default defineComponent({
     const seconds = ref(INITIAL_SECONDS);
     const editing = ref(false);
     const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
+    const error = ref<string>();
     let interval: number | undefined;
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -90,13 +92,19 @@ export default defineComponent({
       localStorage.setItem("timer-bgColor", bgColor.value);
     };
 
+    const onError = (msg: string) => {
+      error.value = msg;
+      setTimeout(() => (error.value = undefined), 2000);
+    };
+
     return {
       bgColor,
       editing,
+      error,
       initialSeconds,
       onBgColorInput,
+      onError,
       seconds,
-      showError: (e: string) => console.log(e),
     };
   },
 });
