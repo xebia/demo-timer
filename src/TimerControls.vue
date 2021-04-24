@@ -38,7 +38,6 @@ export default defineComponent({
           emit("reset");
           break;
         default:
-          console.log(e);
       }
     };
 

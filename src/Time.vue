@@ -32,7 +32,7 @@ export default defineComponent({
 .time-display {
   height: 100%;
   line-height: 0;
-  font-size: 30vw;
+  font-size: 35vw;
   display: flex;
   justify-content: center;
   align-items: center;

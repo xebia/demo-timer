@@ -63,10 +63,17 @@ body {
   height: 100%;
   margin: 0;
 }
+@font-face {
+  font-family: "DigitalDisplay";
+  src: url("assets/DigitalDisplay.woff") format("woff"),
+    url("assets/DigitalDisplay.ttf") format("truetype");
+  font-weight: bold;
+}
 #app {
   background: #6c1d5f;
   color: #ffffff;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: DigitalDisplay, serif, monospace;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
