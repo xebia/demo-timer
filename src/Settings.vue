@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <button @click="toggleHelp">?</button>
     <div class="sidepanel" v-show="showHelp">
       <h2>Keyboard shortcuts</h2>
@@ -48,9 +48,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.container {
-  text-align: right;
-}
 button {
   cursor: pointer;
   color: #ffffff;

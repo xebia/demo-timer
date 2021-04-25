@@ -14,7 +14,22 @@
       <Time v-else :seconds="seconds" />
       <div v-if="error" class="error">{{ error }}</div>
     </div>
-    <footer>
+    <footer class="container">
+      <button
+        @click="interval ? pauseTimer() : startTimer()"
+        :style="{ marginRight: '1rem' }"
+      >
+        {{ interval ? "◼" : "▶" }}
+      </button>
+      <button
+        @click="
+          pauseTimer();
+          resetTimer();
+        "
+      >
+        ↺
+      </button>
+      <div style="flex: 1" />
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
     </footer>
   </div>
@@ -39,7 +54,7 @@ export default defineComponent({
     const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
     const error = ref<string>();
     const showLogo = ref(true);
-    let interval: number | undefined;
+    const interval = ref<number>();
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "l") {
@@ -53,7 +68,7 @@ export default defineComponent({
           case " ":
           case "Enter":
             e.preventDefault();
-            if (interval) {
+            if (interval.value) {
               pauseTimer();
             } else {
               startTimer();
@@ -65,7 +80,7 @@ export default defineComponent({
             resetTimer();
             break;
           case "s":
-            if (!interval) {
+            if (!interval.value) {
               editing.value = true;
             }
             break;
@@ -79,14 +94,14 @@ export default defineComponent({
     onUnmounted(() => window.removeEventListener("keydown", onKeyDown));
 
     const startTimer = () => {
-      interval = setInterval(() => {
+      interval.value = setInterval(() => {
         seconds.value--;
       }, 1000);
     };
 
     const pauseTimer = () => {
-      interval && clearInterval(interval);
-      interval = undefined;
+      interval.value && clearInterval(interval.value);
+      interval.value = undefined;
     };
 
     const resetTimer = () => {
@@ -110,9 +125,13 @@ export default defineComponent({
       editing,
       error,
       initialSeconds,
+      interval,
       onBgColorInput,
       onError,
+      pauseTimer,
+      resetTimer,
       seconds,
+      startTimer,
       showLogo,
     };
   },
@@ -161,7 +180,8 @@ body {
   flex-direction: column;
 }
 .container {
-  padding: 0 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .content {
   display: flex;
@@ -176,6 +196,24 @@ body {
   margin-bottom: 8vw;
 }
 footer {
-  padding: 1rem 0;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+button {
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  background: transparent;
+  opacity: 0.2;
+  &:hover {
+    background: #5a5a5a;
+  }
 }
 </style>
