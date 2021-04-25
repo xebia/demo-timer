@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
-      <Logo :style="{ width: '15vw' }" class="logo" />
+      <Logo v-show="showLogo" :style="{ width: '15vw' }" class="logo" />
       <EditTimer
         v-if="editing"
         @editing="editing = $event"
@@ -38,9 +38,15 @@ export default defineComponent({
     const editing = ref(false);
     const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
     const error = ref<string>();
+    const showLogo = ref(true);
     let interval: number | undefined;
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "l") {
+        showLogo.value = !showLogo.value;
+        return;
+      }
+
       // Start/stop/reset timer
       if (!editing.value) {
         switch (e.key) {
@@ -107,6 +113,7 @@ export default defineComponent({
       onBgColorInput,
       onError,
       seconds,
+      showLogo,
     };
   },
 });

@@ -7,6 +7,7 @@
         <li><code>Space</code> Start / pause timer</li>
         <li><code>Esc</code> Reset timer</li>
         <li><code>S</code> Set timer length</li>
+        <li><code>L</code> Toggle logo</li>
         <li><code>?</code> Toggle help/settings</li>
       </ul>
       <h2>Settings</h2>
