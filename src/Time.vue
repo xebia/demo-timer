@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="time-display">{{ time }}</div>
+    <div class="time-display" :class="{ blink: seconds <= 0 }">{{ time }}</div>
   </div>
 </template>
 
@@ -33,5 +33,13 @@ export default defineComponent({
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
   font-size: 35vw;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
 }
 </style>
