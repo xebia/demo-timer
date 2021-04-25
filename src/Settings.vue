@@ -73,16 +73,6 @@ button {
   text-align: left;
 }
 code {
-  color: #222222;
-  font-weight: bold;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #f7f7f7;
-  padding: 0.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin-right: 0.5rem;
 }
 

@@ -32,11 +32,11 @@ export default defineComponent({
           const split = +timerSequence.value.length - 2;
           const secs = +timerSequence.value.substring(split);
           if (secs >= 60) {
-            emit('error', 'Seconds must be under 60');
+            emit('message', 'Seconds must be under 60');
             return;
           }
           if (!timerSequence.value.length) {
-            emit('error', 'Please enter a value using numeric keys');
+            emit('message', 'Please enter a value using numeric keys');
             return;
           }
           emit('change', +timerSequence.value.substring(0, split) * 60 + secs);
@@ -66,7 +66,7 @@ export default defineComponent({
 .time-display {
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
-  font-size: 35vw;
+  font-size: 60vh;
 
   text-decoration: underline;
   text-decoration-color: #06a99c;

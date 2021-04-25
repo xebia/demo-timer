@@ -1,35 +1,37 @@
 <template>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
-      <Logo v-show="showLogo" :style="{ width: '15vw' }" class="logo" />
+      <Logo v-show="showLogo" class="logo" />
       <EditTimer
         v-if="editing"
-        @editing="editing = $event"
+        @editing="onSetEditing($event)"
         @change="
           initialSeconds = $event;
           seconds = $event;
         "
-        @error="onError($event)"
+        @message="onMessage($event)"
       />
       <Time v-else :seconds="seconds" />
-      <div v-if="error" class="error">{{ error }}</div>
     </div>
     <footer class="container">
-      <button @click="editing = !editing" :style="{ marginRight: '1rem' }">⚙</button>
-      <button v-if="!editing" @click="interval ? pauseTimer() : startTimer()" :style="{ marginRight: '1rem' }">
-        {{ interval ? '◼' : '▶' }}
-      </button>
-      <button
-        v-if="!editing"
-        @click="
-          pauseTimer();
-          resetTimer();
-        "
-      >
-        ↺
-      </button>
-      <div style="flex: 1" />
-      <Settings :bgColor="bgColor" @input="onBgColorInput" />
+      <div class="message" v-html="message" />
+      <div class="buttons">
+        <button @click="onSetEditing(!editing)" :style="{ marginRight: '1rem' }">⚙</button>
+        <button v-if="!editing" @click="interval ? pauseTimer() : startTimer()" :style="{ marginRight: '1rem' }">
+          {{ interval ? '◼' : '▶' }}
+        </button>
+        <button
+          v-if="!editing"
+          @click="
+            pauseTimer();
+            resetTimer();
+          "
+        >
+          ↺
+        </button>
+        <div style="flex: 1" />
+        <Settings :bgColor="bgColor" @input="onBgColorInput" />
+      </div>
     </footer>
   </div>
 </template>
@@ -51,7 +53,7 @@ export default defineComponent({
     const seconds = ref(INITIAL_SECONDS);
     const editing = ref(false);
     const bgColor = ref(localStorage.getItem('timer-bgColor') || '#6c1d5f');
-    const error = ref<string>();
+    const message = ref<string>();
     const showLogo = ref(true);
     const interval = ref<number>();
 
@@ -80,7 +82,7 @@ export default defineComponent({
             break;
           case 's':
             if (!interval.value) {
-              editing.value = true;
+              onSetEditing(true);
             }
             break;
           default:
@@ -114,19 +116,27 @@ export default defineComponent({
       localStorage.setItem('timer-bgColor', bgColor.value);
     };
 
-    const onError = (msg: string) => {
-      error.value = msg;
-      setTimeout(() => (error.value = undefined), 2000);
+    const onSetEditing = (value: boolean) => {
+      editing.value = value;
+      message.value = value
+        ? 'Enter a value with numeric keys.<br/>Confirm with <code>Enter</code>. Cancel with <code>Esc</code>.'
+        : '';
+    };
+
+    const onMessage = (msg: string) => {
+      message.value = msg;
+      setTimeout(() => (message.value = undefined), 2000);
     };
 
     return {
       bgColor,
       editing,
-      error,
+      message,
       initialSeconds,
       interval,
       onBgColorInput,
-      onError,
+      onMessage,
+      onSetEditing,
       pauseTimer,
       resetTimer,
       seconds,
@@ -191,9 +201,10 @@ body {
   padding: 1rem 0;
 }
 .logo {
-  margin-bottom: 8vw;
+  width: 25vh;
+  margin-bottom: 8vh;
 }
-footer {
+.buttons {
   display: flex;
   align-items: flex-end;
   padding-top: 1rem;
@@ -213,5 +224,22 @@ button {
   &:hover {
     background: #5a5a5a;
   }
+}
+.message {
+  height: 1em;
+  line-height: 1.5;
+}
+
+code {
+  color: #222222;
+  font-weight: bold;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f7f7f7;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

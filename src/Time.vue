@@ -30,7 +30,7 @@ export default defineComponent({
 .time-display {
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
-  font-size: 35vw;
+  font-size: 60vh;
 }
 @keyframes blink-animation {
   to {
