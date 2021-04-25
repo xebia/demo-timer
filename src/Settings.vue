@@ -13,9 +13,7 @@
       <h2>Settings</h2>
       <ul>
         <li>
-          <label>
-            <input type="color" :value="bgColor" /> Background color
-          </label>
+          <label> <input type="color" :value="bgColor" /> Background color </label>
         </li>
       </ul>
     </div>
@@ -23,23 +21,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 
 export default defineComponent({
-  name: "Settings",
+  name: 'Settings',
   props: { bgColor: { type: String, required: true } },
   setup() {
     const toggleHelp = () => (showHelp.value = !showHelp.value);
 
     const keyDown = (e: KeyboardEvent) => {
-      if (e.key === "?") {
+      if (e.key === '?') {
         e.preventDefault();
         toggleHelp();
       }
     };
 
-    onMounted(() => window.addEventListener("keydown", keyDown));
-    onUnmounted(() => window.removeEventListener("keydown", keyDown));
+    onMounted(() => window.addEventListener('keydown', keyDown));
+    onUnmounted(() => window.removeEventListener('keydown', keyDown));
 
     const showHelp = ref(false);
     return { showHelp, toggleHelp };
@@ -103,7 +101,7 @@ li {
 label {
   color: #9d92b2;
 }
-input[type="color"] {
+input[type='color'] {
   margin-right: 0.5rem;
 }
 </style>

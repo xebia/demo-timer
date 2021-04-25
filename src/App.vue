@@ -15,11 +15,8 @@
       <div v-if="error" class="error">{{ error }}</div>
     </div>
     <footer class="container">
-      <button
-        @click="interval ? pauseTimer() : startTimer()"
-        :style="{ marginRight: '1rem' }"
-      >
-        {{ interval ? "◼" : "▶" }}
+      <button @click="interval ? pauseTimer() : startTimer()" :style="{ marginRight: '1rem' }">
+        {{ interval ? '◼' : '▶' }}
       </button>
       <button
         @click="
@@ -38,28 +35,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
-import EditTimer from "./EditTimer.vue";
-import Settings from "./Settings.vue";
-import Time from "./Time.vue";
-import Logo from "./Logo.vue";
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import EditTimer from './EditTimer.vue';
+import Settings from './Settings.vue';
+import Time from './Time.vue';
+import Logo from './Logo.vue';
 
 const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: { EditTimer, Logo, Settings, Time },
   setup() {
     const initialSeconds = ref(INITIAL_SECONDS);
     const seconds = ref(INITIAL_SECONDS);
     const editing = ref(false);
-    const bgColor = ref(localStorage.getItem("timer-bgColor") || "#6c1d5f");
+    const bgColor = ref(localStorage.getItem('timer-bgColor') || '#6c1d5f');
     const error = ref<string>();
     const showLogo = ref(true);
     const interval = ref<number>();
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "l") {
+      if (e.key === 'l') {
         showLogo.value = !showLogo.value;
         return;
       }
@@ -67,8 +64,8 @@ export default defineComponent({
       // Start/stop/reset timer
       if (!editing.value) {
         switch (e.key) {
-          case " ":
-          case "Enter":
+          case ' ':
+          case 'Enter':
             e.preventDefault();
             if (interval.value) {
               pauseTimer();
@@ -76,12 +73,12 @@ export default defineComponent({
               startTimer();
             }
             break;
-          case "Escape":
+          case 'Escape':
             e.preventDefault();
             pauseTimer();
             resetTimer();
             break;
-          case "s":
+          case 's':
             if (!interval.value) {
               editing.value = true;
             }
@@ -92,8 +89,8 @@ export default defineComponent({
       }
     };
 
-    onMounted(() => window.addEventListener("keydown", onKeyDown));
-    onUnmounted(() => window.removeEventListener("keydown", onKeyDown));
+    onMounted(() => window.addEventListener('keydown', onKeyDown));
+    onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 
     const startTimer = () => {
       interval.value = setInterval(() => {
@@ -114,7 +111,7 @@ export default defineComponent({
 
     const onBgColorInput = (e: MouseEvent) => {
       bgColor.value = (e.target as HTMLInputElement).value;
-      localStorage.setItem("timer-bgColor", bgColor.value);
+      localStorage.setItem('timer-bgColor', bgColor.value);
     };
 
     const onError = (msg: string) => {
@@ -142,21 +139,20 @@ export default defineComponent({
 
 <style lang="scss">
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("assets/proximanova-regular-webfont.woff") format("woff"),
-    url("assets/proximanova-regular-webfont.ttf") format("truetype");
+  font-family: 'Proxima Nova';
+  src: url('assets/proximanova-regular-webfont.woff') format('woff'),
+    url('assets/proximanova-regular-webfont.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("assets/proximanova-bold-webfont.woff") format("woff"),
-    url("assets/proximanova-bold-webfont.ttf") format("truetype");
+  font-family: 'Proxima Nova';
+  src: url('assets/proximanova-bold-webfont.woff') format('woff'),
+    url('assets/proximanova-bold-webfont.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
-  font-family: "DigitalDisplay";
-  src: url("assets/DigitalDisplay.woff") format("woff"),
-    url("assets/DigitalDisplay.ttf") format("truetype");
+  font-family: 'DigitalDisplay';
+  src: url('assets/DigitalDisplay.woff') format('woff'), url('assets/DigitalDisplay.ttf') format('truetype');
   font-weight: bold;
 }
 
@@ -169,7 +165,7 @@ body {
 #app {
   background: #6c1d5f;
   color: #ffffff;
-  font-family: "Proxima Nova", monospace;
+  font-family: 'Proxima Nova', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
