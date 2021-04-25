@@ -15,19 +15,19 @@
       <div v-if="error" class="error">{{ error }}</div>
     </div>
     <footer class="container">
-      <button @click="interval ? pauseTimer() : startTimer()" :style="{ marginRight: '1rem' }">
+      <button @click="editing = !editing" :style="{ marginRight: '1rem' }">⚙</button>
+      <button v-if="!editing" @click="interval ? pauseTimer() : startTimer()" :style="{ marginRight: '1rem' }">
         {{ interval ? '◼' : '▶' }}
       </button>
       <button
+        v-if="!editing"
         @click="
           pauseTimer();
           resetTimer();
         "
-        :style="{ marginRight: '1rem' }"
       >
         ↺
       </button>
-      <button @click="editing = !editing">⚙</button>
       <div style="flex: 1" />
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
     </footer>
