@@ -1,4 +1,5 @@
 <template>
+  <div class="no-mobile">Sorry this app is not (yet) built for touch devices.<br />Just use the native timer app.</div>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
       <Logo v-show="showLogo" class="logo" />
@@ -247,5 +248,18 @@ code {
   font-weight: bold;
   font-size: 60vh;
   line-height: 0.75;
+}
+
+.no-mobile {
+  display: none;
+  padding: 1rem 0;
+}
+@media (hover: none) {
+  .app-container {
+    display: none;
+  }
+  .no-mobile {
+    display: block;
+  }
 }
 </style>
