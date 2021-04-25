@@ -26,9 +26,11 @@
           pauseTimer();
           resetTimer();
         "
+        :style="{ marginRight: '1rem' }"
       >
         ↺
       </button>
+      <button @click="editing = !editing">⚙</button>
       <div style="flex: 1" />
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
     </footer>

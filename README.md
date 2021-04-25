@@ -33,8 +33,10 @@ npm run lint
 
 ### Deploy
 
-This project is deployed on Firebase, so you need Firebase project access to deploy.
+This project is deployed on Firebase automatically in CircleCI using a deployment token.
+If you want to deploy manually, you need Firebase project access.
 
 ```
+firebase login
 npm run deploy
 ```
