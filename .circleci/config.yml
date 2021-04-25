@@ -1,0 +1,31 @@
+version: '2.1'
+orbs:
+  node: circleci/node@4.3.0
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '14.16'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run lint
+  deploy:
+    executor:
+      name: node/default
+      tag: '14.16'
+    steps:
+      - run:
+          command: npm run deploy -- --token=$FIREBASE_DEPLOY_TOKEN
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
