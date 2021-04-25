@@ -2,6 +2,10 @@
 
 This is a simple PWA to run a Xebia branded timer during Innovation Day demos.
 
+It is 100% keyboard controllable but also works on mobile and tablet.
+
+![Screenshow of timer app](./preview.png)
+
 ## Project setup
 ```
 npm install
@@ -29,9 +33,8 @@ npm run lint
 
 ### Deploy
 
+This project is deployed on Firebase, so you need Firebase project access to deploy.
+
 ```
 npm run deploy
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
