@@ -1,6 +1,7 @@
 <template>
   <div class="app-container" :style="{ background: bgColor }">
     <div class="content">
+      <Logo :style="{ width: '15vw' }" class="logo" />
       <EditTimer
         v-if="editing"
         @editing="editing = $event"
@@ -11,7 +12,7 @@
         @error="onError($event)"
       />
       <Time v-else :seconds="seconds" />
-      <div v-if="error">{{ error }}</div>
+      <div v-if="error" class="error">{{ error }}</div>
     </div>
     <footer>
       <Settings :bgColor="bgColor" @input="onBgColorInput" />
@@ -24,12 +25,13 @@ import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 import EditTimer from "./EditTimer.vue";
 import Settings from "./Settings.vue";
 import Time from "./Time.vue";
+import Logo from "./Logo.vue";
 
 const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: "App",
-  components: { EditTimer, Settings, Time },
+  components: { EditTimer, Logo, Settings, Time },
   setup() {
     const initialSeconds = ref(INITIAL_SECONDS);
     const seconds = ref(INITIAL_SECONDS);
@@ -155,9 +157,16 @@ body {
   padding: 0 1rem;
 }
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   flex: 1;
   padding: 1rem 0;
+}
+.logo {
+  margin-bottom: 8vw;
 }
 footer {
   padding: 1rem 0;

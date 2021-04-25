@@ -1,5 +1,5 @@
 <template>
-  <div class="container wrapper">
+  <div class="container">
     <div class="time-display">{{ time }}</div>
   </div>
 </template>
@@ -32,14 +32,6 @@ export default defineComponent({
 .time-display {
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
-  height: 100%;
-  line-height: 0;
   font-size: 35vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.wrapper {
-  height: 100%;
 }
 </style>

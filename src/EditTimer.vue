@@ -69,12 +69,7 @@ export default defineComponent({
 .time-display {
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
-  height: 100%;
-  line-height: 0;
   font-size: 35vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   text-decoration: underline;
   text-decoration-color: #06a99c;
