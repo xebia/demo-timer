@@ -64,10 +64,6 @@ export default defineComponent({
 
 <style scoped>
 .time-display {
-  font-family: DigitalDisplay, monospace;
-  font-weight: bold;
-  font-size: 60vh;
-
   text-decoration: underline;
   text-decoration-color: #06a99c;
   text-decoration-thickness: 1.5rem;

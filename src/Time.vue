@@ -27,11 +27,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.time-display {
-  font-family: DigitalDisplay, monospace;
-  font-weight: bold;
-  font-size: 60vh;
-}
 @keyframes blink-animation {
   to {
     visibility: hidden;

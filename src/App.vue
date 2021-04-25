@@ -242,4 +242,10 @@ code {
   align-items: center;
   justify-content: center;
 }
+.time-display {
+  font-family: DigitalDisplay, monospace;
+  font-weight: bold;
+  font-size: 60vh;
+  line-height: 0.75;
+}
 </style>

@@ -6,7 +6,7 @@ import './registerServiceWorker';
 createApp(App)
   .use(VueGtag, {
     config: {
-      id: 'G-JLMJX3X46F', //
+      id: 'G-JLMJX3X46F',
     },
   })
   .mount('#app');
