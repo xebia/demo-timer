@@ -14,7 +14,7 @@
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
-    "vue-gtag-next": "1.14.0"
+    "vue-gtag": "2.0.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

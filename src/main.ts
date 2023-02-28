@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import VueGtag from 'vue-gtag-next';
+import VueGtag from 'vue-gtag';
 import App from './App.vue';
 import './registerServiceWorker';
 
