@@ -8,6 +8,8 @@ It is 100% keyboard controllable but also works on mobile and tablet.
 
 ## Project setup
 
+This project works with at least Node 14.19 and Npm 8.16
+
 ```
 npm install
 ```
