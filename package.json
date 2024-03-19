@@ -17,6 +17,7 @@
     "vue-gtag": "2.0.1"
   },
   "devDependencies": {
+    "@rushstack/eslint-patch": "^1.7.2",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",

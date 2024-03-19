@@ -11,6 +11,7 @@ const leftPad = (v: number): string => (v.toString().length < 2 ? `0${v}` : v.to
 const round = (v: number): string => `${v < 0 ? '-' : ''}${Math.floor(Math.abs(v))}`;
 
 export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names, vue/no-reserved-component-names
   name: 'Time',
   props: {
     seconds: { type: Number, required: true },

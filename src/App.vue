@@ -48,7 +48,7 @@ const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: 'App',
-  components: { EditTimer, Logo, Settings, Time },
+  components: { EditTimer, Logo, Settings, Time }, // eslint-disable-line vue/no-reserved-component-names
   setup() {
     const initialSeconds = ref(INITIAL_SECONDS);
     const seconds = ref(INITIAL_SECONDS);
@@ -151,19 +151,23 @@ export default defineComponent({
 <style lang="scss">
 @font-face {
   font-family: 'Proxima Nova';
-  src: url('assets/proximanova-regular-webfont.woff') format('woff'),
+  src:
+    url('assets/proximanova-regular-webfont.woff') format('woff'),
     url('assets/proximanova-regular-webfont.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Proxima Nova';
-  src: url('assets/proximanova-bold-webfont.woff') format('woff'),
+  src:
+    url('assets/proximanova-bold-webfont.woff') format('woff'),
     url('assets/proximanova-bold-webfont.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'DigitalDisplay';
-  src: url('assets/DigitalDisplay.woff') format('woff'), url('assets/DigitalDisplay.ttf') format('truetype');
+  src:
+    url('assets/DigitalDisplay.woff') format('woff'),
+    url('assets/DigitalDisplay.ttf') format('truetype');
   font-weight: bold;
 }
 
