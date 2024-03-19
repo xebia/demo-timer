@@ -24,7 +24,7 @@
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 
 export default defineComponent({
-  name: 'Settings', // eslint-disable-line vue/multi-word-component-names
+  name: 'Settings',
   props: { bgColor: { type: String, required: true } },
   setup() {
     const toggleHelp = () => (showHelp.value = !showHelp.value);

@@ -12,7 +12,7 @@
         "
         @message="onMessage($event)"
       />
-      <Time v-else :seconds="seconds" />
+      <Countdown v-else :seconds="seconds" />
     </div>
     <footer class="container">
       <div class="message" v-html="message" />
@@ -41,14 +41,14 @@
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import EditTimer from './EditTimer.vue';
 import Settings from './Settings.vue';
-import Time from './Time.vue';
+import Countdown from './Countdown.vue';
 import Logo from './Logo.vue';
 
 const INITIAL_SECONDS = 5 * 60;
 
 export default defineComponent({
   name: 'App',
-  components: { EditTimer, Logo, Settings, Time }, // eslint-disable-line vue/no-reserved-component-names
+  components: { Countdown, EditTimer, Logo, Settings },
   setup() {
     const initialSeconds = ref(INITIAL_SECONDS);
     const seconds = ref(INITIAL_SECONDS);
