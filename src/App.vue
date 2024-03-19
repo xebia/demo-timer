@@ -96,9 +96,10 @@ export default defineComponent({
     onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 
     const startTimer = () => {
+      const endTime = Date.now() + initialSeconds.value * 1000;
       interval.value = setInterval(() => {
-        seconds.value--;
-      }, 1000);
+        seconds.value = Math.ceil((endTime - Date.now()) / 1000);
+      }, 100);
     };
 
     const pauseTimer = () => {
@@ -155,6 +156,7 @@ export default defineComponent({
     url('assets/proximanova-regular-webfont.woff') format('woff'),
     url('assets/proximanova-regular-webfont.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Proxima Nova';
   src:
@@ -192,10 +194,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .container {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
 .content {
   display: flex;
   flex-direction: column;
@@ -205,16 +209,19 @@ body {
   flex: 1;
   padding: 1rem 0;
 }
+
 .logo {
   width: 25vh;
   margin-bottom: 8vh;
 }
+
 .buttons {
   display: flex;
   align-items: flex-end;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
 button {
   cursor: pointer;
   color: #ffffff;
@@ -226,10 +233,12 @@ button {
   border-radius: 4px;
   background: transparent;
   opacity: 0.2;
+
   &:hover {
     background: #5a5a5a;
   }
 }
+
 .message {
   height: 1em;
   line-height: 1.5;
@@ -247,6 +256,7 @@ code {
   align-items: center;
   justify-content: center;
 }
+
 .time-display {
   font-family: DigitalDisplay, monospace;
   font-weight: bold;
@@ -258,10 +268,12 @@ code {
   display: none;
   padding: 1rem 0;
 }
+
 @media (hover: none) {
   .app-container {
     display: none;
   }
+
   .no-mobile {
     display: block;
   }
