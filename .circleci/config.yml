@@ -1,11 +1,11 @@
 version: '2.1'
 orbs:
-  node: circleci/node@4.3.0
+  node: circleci/node@5.2.0
 jobs:
   test:
     executor:
       name: node/default
-      tag: '14.16'
+      tag: '20.11.1'
     steps:
       - checkout
       - node/install-packages
@@ -14,14 +14,17 @@ jobs:
   deploy:
     executor:
       name: node/default
-      tag: '14.16'
+      tag: '20.11.1'
     steps:
       - checkout
       - node/install-packages
       - run:
-          command: npm run deploy -- --token=$FIREBASE_DEPLOY_TOKEN
+          command: echo "${GOOGLE_APPLICATION_CREDENTIALS_BASE64}" | base64 --decode > "google-application-credentials.json"
+      - run:
+          environment:
+            GOOGLE_APPLICATION_CREDENTIALS: google-application-credentials.json
+          command: npm run deploy
 workflows:
-  version: 2
   test_and_deploy:
     jobs:
       - test
