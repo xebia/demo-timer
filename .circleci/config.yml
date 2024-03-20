@@ -2,7 +2,7 @@ version: '2.1'
 orbs:
   node: circleci/node@5.2.0
 jobs:
-  test:
+  lint:
     executor:
       name: node/default
       tag: '20.11.1'
@@ -19,18 +19,24 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          name: Create credentials file from env var
           command: echo "${GOOGLE_APPLICATION_CREDENTIALS_BASE64}" | base64 --decode > "google-application-credentials.json"
       - run:
+          name: Deploy to Firebase hosting
           environment:
             GOOGLE_APPLICATION_CREDENTIALS: google-application-credentials.json
-          command: npm run deploy
+          command: npm run deploy --only=hosting
+      - run:
+          name: Remove credentials file
+          when: always
+          command: rm google-application-credentials.json
 workflows:
   test_and_deploy:
     jobs:
-      - test
+      - lint
       - deploy:
           requires:
-            - test
+            - lint
           filters:
             branches:
               only: main
